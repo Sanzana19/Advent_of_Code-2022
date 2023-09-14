@@ -1,0 +1,33 @@
+file = open('day2_input.txt', 'r')
+
+score = 0
+
+while True:
+    try:
+        game_round = file.readline()
+
+        # Shape points
+        if (game_round[2] == 'X' and game_round[0] == 'B') or \
+           (game_round[2] == 'Y' and game_round[0] == 'A') or \
+           (game_round[2] == 'Z' and game_round[0] == 'C'):
+            score += 1  # Rock
+
+        if (game_round[2] == 'X' and game_round[0] == 'C') or \
+           (game_round[2] == 'Y' and game_round[0] == 'B') or \
+           (game_round[2] == 'Z' and game_round[0] == 'A'):
+            score += 2  # Paper
+
+        if (game_round[2] == 'X' and game_round[0] == 'A') or \
+           (game_round[2] == 'Y' and game_round[0] == 'C') or \
+           (game_round[2] == 'Z' and game_round[0] == 'B'):
+            score += 3  # scissors
+
+        # Outcome points
+        match game_round[2]:
+            case 'X': score += 0  # Lose
+            case 'Y': score += 3  # Draw
+            case 'Z': score += 6  # Win
+
+    except (Exception,):
+        print(score)
+        break
